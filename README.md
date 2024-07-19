@@ -68,17 +68,17 @@ VITE_BACKEND_URL=http://localhost:8000
 Run the frontend development server:
 
 npm run dev
-### 📋 Usage
+## 📋 Usage
 Open your browser and navigate to http://localhost:5173.
 Use the form to add tasks.
 View, edit, or delete tasks from the list.
-### 📚 API Endpoints
+## 📚 API Endpoints
 GET /api/tasks: Retrieve all tasks.
 POST /api/tasks: Create a new task.
 GET /api/tasks/{task}: Retrieve a specific task.
 PUT /api/tasks/{task}: Update a specific task.
 DELETE /api/tasks/{task}: Delete a specific task.
-### 🤝 Contributing
+## 🤝 Contributing
 Fork the repository.
 Create a new branch:
 
@@ -91,10 +91,10 @@ Push to the branch:
 
 git push origin my-new-feature
 Submit a pull request.
-### 📝 License
+## 📝 License
 This project is licensed under the MIT License.
 
-### 💬 Contact
+## 💬 Contact
 Your Name
 Email: obasantade@gmail.com
 GitHub: Tadester
