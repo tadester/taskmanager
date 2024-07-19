@@ -11,4 +11,11 @@ export default defineConfig({
     }),
     vue(),
   ],
+  root: 'frontend', // Ensure Vite knows where to find index.html
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      input: 'frontend/index.html',
+    },
+  },
 });

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <div id="app">
     <TaskForm :task-to-edit="taskToEdit" @task-submitted="handleTaskSubmitted" />
     <TaskList @edit-task="handleEditTask" />
   </div>
@@ -35,3 +35,7 @@ export default {
   },
 };
 </script>
+
+<style>
+/* Add your styles here */
+</style>
