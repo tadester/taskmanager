@@ -1,5 +1,5 @@
-// src/store.js
 import { createStore } from 'vuex';
+import { fetchTasks, addTask, updateTask, deleteTask } from './api';
 
 const store = createStore({
   state() {
@@ -29,20 +29,20 @@ const store = createStore({
     },
   },
   actions: {
-    fetchTasks({ commit }) {
-      const tasks = [
-        { id: 1, title: 'Task 1', description: 'Description 1' },
-        { id: 2, title: 'Task 2', description: 'Description 2' },
-      ];
-      commit('SET_TASKS', tasks);
+    async fetchTasks({ commit }) {
+      const { data } = await fetchTasks();
+      commit('SET_TASKS', data);
     },
-    addTask({ commit }, task) {
-      commit('ADD_TASK', { ...task, id: Date.now() });
+    async addTask({ commit }, task) {
+      const { data } = await addTask(task);
+      commit('ADD_TASK', data);
     },
-    editTask({ commit }, updatedTask) {
-      commit('EDIT_TASK', updatedTask);
+    async editTask({ commit }, { taskId, task }) {
+      const { data } = await updateTask(taskId, task);
+      commit('EDIT_TASK', data);
     },
-    deleteTask({ commit }, taskId) {
+    async deleteTask({ commit }, taskId) {
+      await deleteTask(taskId);
       commit('DELETE_TASK', taskId);
     },
     setTaskToEdit({ commit }, task) {

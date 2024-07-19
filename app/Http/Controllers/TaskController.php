@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Models\Task;
@@ -9,7 +10,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return Task::all();
+        return response()->json(Task::all());
     }
 
     public function store(Request $request)
@@ -20,7 +21,7 @@ class TaskController extends Controller
 
     public function show(Task $task)
     {
-        return $task;
+        return response()->json($task);
     }
 
     public function update(Request $request, Task $task)

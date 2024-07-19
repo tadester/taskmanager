@@ -1,12 +1,15 @@
 {
     "private": true,
     "scripts": {
-      "dev": "vite",
-      "build": "vite build",
-      "serve": "vite preview"
+        "dev": "vite",
+        "build": "vite build",
+        "serve": "vite preview"
     },
     "devDependencies": {
-      "vite": "^2.5.1"
+        "vite": "^2.5.1"
+    },
+    "dependencies": {
+        "@tailwindcss/forms": "^0.5.7",
+        "@tailwindcss/typography": "^0.5.13"
     }
-  }
-  
+}
