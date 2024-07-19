@@ -51,7 +51,7 @@ Run migrations:
 php artisan migrate
 Serve the backend:
 php artisan serve
-Frontend
+### Frontend
 Navigate to the frontend directory:
 
 
