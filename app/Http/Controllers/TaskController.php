@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use App\Models\Task;
@@ -15,7 +14,7 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        $task = Task::create($request->all());
+        $task = Task::create($request->only(['title', 'description']));
         return response()->json($task, 201);
     }
 
@@ -26,7 +25,7 @@ class TaskController extends Controller
 
     public function update(Request $request, Task $task)
     {
-        $task->update($request->all());
+        $task->update($request->only(['title', 'description']));
         return response()->json($task, 200);
     }
 
