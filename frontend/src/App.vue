@@ -6,28 +6,26 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import TaskForm from './components/TaskForm.vue';
 import TaskList from './components/TaskList.vue';
-import { mapActions } from 'vuex';
 
 export default {
   components: {
     TaskForm,
     TaskList,
   },
-  data() {
-    return {
-      taskToEdit: null,
-    };
+  computed: {
+    ...mapGetters(['taskToEdit']),
   },
   methods: {
-    ...mapActions(['fetchTasks']),
+    ...mapActions(['fetchTasks', 'setTaskToEdit']),
     handleTaskSubmitted() {
-      this.taskToEdit = null;
+      this.setTaskToEdit(null);
       this.fetchTasks();
     },
     handleEditTask(task) {
-      this.taskToEdit = task;
+      this.setTaskToEdit(task);
     },
   },
   mounted() {
@@ -35,7 +33,3 @@ export default {
   },
 };
 </script>
-
-<style>
-/* Add your styles here */
-</style>

@@ -1,47 +1,50 @@
+<!-- src/components/TaskForm.vue -->
 <template>
-    <div>
-      <h1 class="text-2xl font-bold mb-4">{{ isEditing ? 'Edit Task' : 'Add Task' }}</h1>
-      <form @submit.prevent="handleSubmit">
-        <input v-model="task.title" placeholder="Title" class="border p-2 mb-2 w-full" />
-        <textarea v-model="task.description" placeholder="Description" class="border p-2 mb-2 w-full"></textarea>
-        <button type="submit" class="bg-blue-500 text-white p-2">{{ isEditing ? 'Update' : 'Add' }} Task</button>
-      </form>
-    </div>
-  </template>
-  
-  <script>
-  import { mapActions } from 'vuex'
-  
-  export default {
-    props: {
-      taskToEdit: Object
-    },
-    data() {
-      return {
-        task: this.taskToEdit ? { ...this.taskToEdit } : { title: '', description: '' }
-      }
-    },
-    computed: {
-      isEditing() {
-        return !!this.taskToEdit
-      }
-    },
-    methods: {
-      ...mapActions(['addTask', 'updateTask']),
-      handleSubmit() {
-        if (this.isEditing) {
-          this.updateTask(this.task)
+  <div>
+    <h2>{{ taskToEdit ? 'Edit Task' : 'Add Task' }}</h2>
+    <form @submit.prevent="submitForm">
+      <input type="text" v-model="task.title" placeholder="Task Title" required />
+      <textarea v-model="task.description" placeholder="Task Description"></textarea>
+      <button type="submit">{{ taskToEdit ? 'Update Task' : 'Add Task' }}</button>
+    </form>
+  </div>
+</template>
+
+<script>
+import { mapActions, mapGetters } from 'vuex';
+
+export default {
+  props: ['taskToEdit'],
+  data() {
+    return {
+      task: {
+        title: '',
+        description: '',
+      },
+    };
+  },
+  watch: {
+    taskToEdit: {
+      immediate: true,
+      handler(newVal) {
+        if (newVal) {
+          this.task = { ...newVal };
         } else {
-          this.addTask(this.task)
+          this.task = { title: '', description: '' };
         }
-        this.$emit('task-submitted')
-      }
+      },
     },
-    watch: {
-      taskToEdit(newTask) {
-        this.task = newTask ? { ...newTask } : { title: '', description: '' }
+  },
+  methods: {
+    ...mapActions(['addTask', 'editTask']),
+    submitForm() {
+      if (this.taskToEdit) {
+        this.editTask(this.task);
+      } else {
+        this.addTask(this.task);
       }
-    }
-  }
-  </script>
-  
+      this.$emit('task-submitted');
+    },
+  },
+};
+</script>

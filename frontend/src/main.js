@@ -1,9 +1,9 @@
 // src/main.js
 import { createApp } from 'vue';
 import App from './App.vue';
-import store from './store'; // if you have a Vuex store
+import store from './store';
 import './assets/tailwind.css';
 
 createApp(App)
-  .use(store) // if you have a Vuex store
+  .use(store)
   .mount('#app');

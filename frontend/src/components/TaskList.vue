@@ -1,32 +1,34 @@
+<!-- src/components/TaskList.vue -->
 <template>
   <div>
-    <h1 class="text-2xl font-bold mb-4">Task List</h1>
+    <h2>Task List</h2>
     <ul>
-      <li v-for="task in tasks" :key="task.id" class="mb-2">
-        <div class="flex justify-between">
-          <span>{{ task.title }}</span>
-          <div>
-            <button @click="editTask(task)" class="text-blue-500">Edit</button>
-            <button @click="deleteTask(task.id)" class="text-red-500">Delete</button>
-          </div>
-        </div>
+      <li v-for="task in tasks" :key="task.id">
+        <h3>{{ task.title }}</h3>
+        <p>{{ task.description }}</p>
+        <button @click="editTask(task)">Edit</button>
+        <button @click="deleteTask(task.id)">Delete</button>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   computed: {
-    ...mapState(['tasks'])
+    ...mapGetters(['tasks']),
   },
   methods: {
-    ...mapActions(['deleteTask']),
+    ...mapActions(['deleteTask', 'setTaskToEdit']),
     editTask(task) {
-      this.$emit('edit-task', task)
-    }
-  }
-}
+      this.setTaskToEdit(task);
+      this.$emit('edit-task', task);
+    },
+  },
+  mounted() {
+    this.$store.dispatch('fetchTasks');
+  },
+};
 </script>
