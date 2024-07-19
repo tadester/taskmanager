@@ -6,32 +6,32 @@
 </template>
 
 <script>
-import TaskForm from './components/TaskForm.vue'
-import TaskList from './components/TaskList.vue'
-import { mapActions } from 'vuex'
+import TaskForm from './components/TaskForm.vue';
+import TaskList from './components/TaskList.vue';
+import { mapActions } from 'vuex';
 
 export default {
   components: {
     TaskForm,
-    TaskList
+    TaskList,
   },
   data() {
     return {
-      taskToEdit: null
-    }
+      taskToEdit: null,
+    };
   },
   methods: {
     ...mapActions(['fetchTasks']),
     handleTaskSubmitted() {
-      this.taskToEdit = null
-      this.fetchTasks()
+      this.taskToEdit = null;
+      this.fetchTasks();
     },
     handleEditTask(task) {
-      this.taskToEdit = task
-    }
+      this.taskToEdit = task;
+    },
   },
   mounted() {
-    this.fetchTasks()
-  }
-}
+    this.fetchTasks();
+  },
+};
 </script>
